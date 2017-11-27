@@ -45,6 +45,12 @@ TagManager:
   - name: Background
     uniqueID: 1427710139
     locked: 0
+  - name: Civilian
+    uniqueID: 3074210203
+    locked: 0
+  - name: BlackCover
+    uniqueID: 737656429
+    locked: 0
   - name: Player
     uniqueID: 1414101323
     locked: 0

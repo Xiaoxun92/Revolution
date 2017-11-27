@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [Header("熄灭时点燃需要的次数")]
     public int igniteCountNeeded;
@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     public float acceleration;
     public float drag;
 
-    bool burning;
+    [Header("")]
+    public bool burning;
     int igniteCount;
     float lastIgniteTime;
 
