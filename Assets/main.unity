@@ -312,7 +312,7 @@ MonoBehaviour:
   civilianPrefab: {fileID: 1027251980202450, guid: 1d68a4954925c5345b2a7ed2c313990a,
     type: 2}
   tileLength: 20
-  civilianPerTile: 10
+  civilianPerTile: 5
 --- !u!1 &651462082
 GameObject:
   m_ObjectHideFlags: 0
