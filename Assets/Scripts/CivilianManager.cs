@@ -7,6 +7,7 @@ public class CivilianManager : MonoBehaviour {
     public Transform player;
     public GameObject civilianPrefab;
     public float tileLength;
+    [Header("平民的生成密度")]
     public int civilianPerTile;
 
     int playerX;

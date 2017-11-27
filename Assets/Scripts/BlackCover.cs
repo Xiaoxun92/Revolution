@@ -4,7 +4,7 @@ public class BlackCover : MonoBehaviour {
 
     public GameObject player;
 
-    [Header("火焰点燃后照亮环境需要的时间")]
+    [Header("玩家火焰点燃后，逐渐照亮环境需要的时间")]
     public float fadeTime;
 	
 	void Update () {

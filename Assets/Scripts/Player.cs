@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("熄灭时点燃需要的次数")]
+    [Header("点燃玩家火焰需要的次数")]
     public int igniteCountNeeded;
     [Header("两次点燃的时间间隔")]
     public float igniteGapMin;
     public float igniteGapMax;
     public float igniteFlashLifespan;
 
-    [Header("移动参数")]
+    [Header("最大移动速度")]
     public float maxSpeed;
+    [Header("加速度")]
     public float acceleration;
+    [Header("摩擦减速比例")]
     public float drag;
+    public float igniteRadius;
+    public float sizeGrowSpeed;
+    public float sizeDropSpeed;
 
     [Header("")]
     public bool burning;
+    public float fireSize;
     int igniteCount;
     float lastIgniteTime;
 
@@ -26,7 +32,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         burning = false;
-
+        fireSize = 1;
         igniteCount = 0;
         lastIgniteTime = 0;
 
@@ -42,6 +48,8 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
                 Ignite();
             }
+        } else {
+            transform.GetChild(0).localScale = new Vector3(fireSize, fireSize, 1);
         }
     }
 
@@ -49,6 +57,8 @@ public class Player : MonoBehaviour
     {
         if (burning == false)
             return;
+
+        fireSize -= sizeDropSpeed;
 
         // Update speed and position
         Vector2 controlVector = Vector2.zero;
@@ -83,6 +93,11 @@ public class Player : MonoBehaviour
         transform.position += (Vector3)currentSpeed;
     }
 
+    private void LateUpdate()
+    {
+        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+    }
+
     void Ignite()
     {
         if (Time.time - lastIgniteTime < igniteGapMin)
@@ -100,8 +115,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    public void Grow()
     {
-        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+        fireSize += sizeGrowSpeed;
     }
 }
