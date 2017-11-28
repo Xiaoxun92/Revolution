@@ -40,8 +40,8 @@ MonoBehaviour:
     y: 605
     width: 934
     height: 303
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 104, y: 121}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 342}
   m_MaxSize: {x: 4004, y: 8042}
   vertical: 1
-  controlID: 96
+  controlID: 10
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 342}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 129
+  controlID: 33
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -375,9 +375,9 @@ MonoBehaviour:
     height: 887
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f8fbffff
-    m_LastClickedID: -1032
-    m_ExpandedIDs: bafbfffff8fbffff1afcffff00000000
+    m_SelectedIDs: bacbffff
+    m_LastClickedID: 0
+    m_ExpandedIDs: f8fbffff1afcffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -471,20 +471,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/LowPoly Particles
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/LowPoly Particles
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "E:\\Game Center 2017\u79CB\\\u6240\u6709\u8BFE\u7A0B\u6587\u4EF6\\Game
-    Studio 1\\final_project\\fire_test"
+    Studio 1\\\u548C\u5C0F\u5DE1\u7684\u9769\u547D\\Revolution\\fire_test"
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 54260000
-    m_LastClickedID: 9812
-    m_ExpandedIDs: 0000000026260000542600008a2600002a270000be2700001c28000026280000b0290000b229000000ca9a3bffffff7f
+    m_SelectedIDs: 26260000
+    m_LastClickedID: 9766
+    m_ExpandedIDs: 0000000026260000542600008a2600002a270000be2700001c28000026280000aa290000ac29000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -512,7 +512,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 76260000
     m_LastClickedID: 9846
-    m_ExpandedIDs: 0000000026260000542600008a2600002a270000be2700001c28000026280000b0290000b2290000
+    m_ExpandedIDs: 0000000026260000542600008a2600002a270000be2700001c28000026280000aa290000ac290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
