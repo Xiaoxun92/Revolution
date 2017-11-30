@@ -423,7 +423,7 @@ MonoBehaviour:
   colorHot: {r: 1, g: 0.59607846, b: 0.30980393, a: 1}
   igniteTime: 2
   growTime: 0.5
-  attractMaxSpeed: 0.06
+  attractMaxSpeed: 0.07
   attractAcceleration: 0.002
 --- !u!114 &114511663584244298
 MonoBehaviour:
