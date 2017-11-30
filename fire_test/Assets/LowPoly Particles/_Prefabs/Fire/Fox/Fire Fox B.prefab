@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 19909900}
   - component: {fileID: 19858732}
   m_Layer: 0
-  m_Name: fire
+  m_Name: fire_new
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &181340
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -7, z: 69.9}
+  m_LocalPosition: {x: 0, y: 37.9, z: 69.9}
   m_LocalScale: {x: 1.0105574, y: 1.0105567, z: 1.0105567}
   m_Children:
   - {fileID: 4745829752428666}
@@ -120,7 +120,7 @@ ParticleSystem:
   moveWithTransform: 2
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 1684567195
+  randomSeed: 516052023
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3438,7 +3438,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1718555691
+  randomSeed: -243442281
   InitialModule:
     serializedVersion: 3
     enabled: 1

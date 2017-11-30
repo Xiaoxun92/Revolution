@@ -1,4 +1,4 @@
 sceneSetups:
-- path: D:/Projects/Revolution/Assets/main.unity
+- path: Assets/firetest1.unity
   isLoaded: 1
   isActive: 1
