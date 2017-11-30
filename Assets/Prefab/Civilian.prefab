@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114467069006781464}
   m_Layer: 0
   m_Name: Civilian
-  m_TagString: Untagged
+  m_TagString: Civilian
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -423,7 +423,7 @@ MonoBehaviour:
   colorHot: {r: 1, g: 0.59607846, b: 0.30980393, a: 1}
   igniteTime: 2
   growTime: 0.5
-  attractMaxSpeed: 0.06
+  attractMaxSpeed: 0.07
   attractAcceleration: 0.002
 --- !u!114 &114511663584244298
 MonoBehaviour:
@@ -23424,4 +23424,4 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Fire
+  - Civilian
   layers:
   - Default
   - TransparentFX
@@ -48,7 +49,7 @@ TagManager:
   - name: Civilian
     uniqueID: 3074210203
     locked: 0
-  - name: BlackCover
+  - name: Vision
     uniqueID: 737656429
     locked: 0
   - name: Player
