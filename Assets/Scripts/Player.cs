@@ -9,75 +9,105 @@ public class Player : MonoBehaviour
     [Header("两次点燃的时间间隔")]
     public float igniteGapMin;
     public float igniteGapMax;
-    public float igniteFlashLifespan;
+    public GameObject igniteFlashPrefab;
 
+    [Header("【鼠标控制方案】")]
     [Header("最大移动速度")]
-    public float maxSpeed;
+    public float maxSpeed1;
     [Header("加速度")]
-    public float acceleration;
+    public float acceleration1;
     [Header("摩擦减速比例")]
-    public float drag;
-    public float igniteRadius;
-    public float sizeGrowSpeed;
-    public float sizeDropSpeed;
+    public float drag1;
 
-    [Header("")]
-    public bool burning;
+    [Header("【键盘控制方案】")]
+    [Header("最大移动速度")]
+    public float maxSpeed2;
+    [Header("加速度")]
+    public float acceleration2;
+    [Header("摩擦减速比例")]
+    public float drag2;
+
+    [Header("火焰初始大小")]
     public float fireSize;
+    [Header("每次吸收增长量")]
+    public float sizeGrowSpeed;
+    [Header("每秒衰减速度")]
+    public float sizeDropSpeed;
+    [Header("火焰进阶大小")]
+    public float fireMaxSize;
+
+    public float igniteRadius;
+
+    GameManager gameManager;
+
+    public bool burning;
     int igniteCount;
     float lastIgniteTime;
-
     Vector2 currentSpeed;
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         burning = false;
-        fireSize = 1;
         igniteCount = 0;
         lastIgniteTime = 0;
-
         currentSpeed = new Vector2();
     }
 
     void Update()
     {
-        if (Time.time - lastIgniteTime >= igniteFlashLifespan)
-            transform.GetChild(1).gameObject.SetActive(false);
-
         if (burning == false) {
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
                 Ignite();
             }
         } else {
+            if (fireSize >= fireMaxSize)
+                gameManager.NextStage();
+            fireSize -= sizeDropSpeed * Time.deltaTime;
             transform.GetChild(0).localScale = new Vector3(fireSize, fireSize, 1);
         }
     }
 
+    // Handle player controls
     void FixedUpdate()
     {
         if (burning == false)
             return;
 
-        fireSize -= sizeDropSpeed;
-
         // Update speed and position
         Vector2 controlVector = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.W))
-            controlVector.y += 1;
-        if (Input.GetKey(KeyCode.S))
-            controlVector.y -= 1;
-        if (Input.GetKey(KeyCode.A))
-            controlVector.x -= 1;
-        if (Input.GetKey(KeyCode.D))
-            controlVector.x += 1;
-
-        if (Input.GetMouseButton(0)) {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            controlVector = mousePos - transform.position;
+        if (gameManager.mouseControlMode) {
+            if (Input.GetMouseButton(0)) {
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                controlVector = mousePos - transform.position;
+            }
+        } else {
+            if (Input.GetKey(KeyCode.W))
+                controlVector.y += 1;
+            if (Input.GetKey(KeyCode.S))
+                controlVector.y -= 1;
+            if (Input.GetKey(KeyCode.A))
+                controlVector.x -= 1;
+            if (Input.GetKey(KeyCode.D))
+                controlVector.x += 1;
         }
 
         controlVector = controlVector.normalized;
+
+        float maxSpeed = 0;
+        float acceleration = 0;
+        float drag = 0;
+        if (gameManager.mouseControlMode) {
+            maxSpeed = maxSpeed1;
+            acceleration = acceleration1;
+            drag = drag1;
+        } else {
+            maxSpeed = maxSpeed2;
+            acceleration = acceleration2;
+            drag = drag2;
+        }
 
         // Slow down previous speed
         Vector2 vVertical = Vector2.Dot(currentSpeed, controlVector) * controlVector;
@@ -108,7 +138,7 @@ public class Player : MonoBehaviour
         else
             igniteCount = 1;
         lastIgniteTime = Time.time;
-        transform.GetChild(1).gameObject.SetActive(true);
+        Instantiate(igniteFlashPrefab, transform);
         if (igniteCount == igniteCountNeeded) {
             burning = true;
             transform.GetChild(0).gameObject.SetActive(true);
