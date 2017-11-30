@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1181599476350372}
+  m_RootGameObject: {fileID: 1965505381548798}
   m_IsPrefabParent: 1
---- !u!1 &1181599476350372
+--- !u!1 &1965505381548798
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4108847698218650}
-  - component: {fileID: 199936132998602302}
-  - component: {fileID: 198595770613712148}
+  - component: {fileID: 4569750661904622}
+  - component: {fileID: 199751039233776448}
+  - component: {fileID: 198360937093527560}
   m_Layer: 0
   m_Name: fire-smoke
   m_TagString: Untagged
@@ -28,25 +28,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4108847698218650
+--- !u!4 &4569750661904622
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1181599476350372}
+  m_GameObject: {fileID: 1965505381548798}
   m_LocalRotation: {x: -0.06512389, y: -0, z: -0, w: -0.99787724}
-  m_LocalPosition: {x: -1.1, y: 5.5, z: -5.3}
-  m_LocalScale: {x: 0.74931836, y: 0.28802586, z: 0.11708109}
+  m_LocalPosition: {x: 0.46, y: 9.62, z: -4.76}
+  m_LocalScale: {x: 1.0380191, y: 1.0380187, z: 1.0380187}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 367.468, y: 0, z: 0}
---- !u!198 &198595770613712148
+--- !u!198 &198360937093527560
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1181599476350372}
+  m_GameObject: {fileID: 1965505381548798}
   serializedVersion: 5
   lengthInSec: 10
   simulationSpeed: 1
@@ -99,8 +99,8 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 2
-  randomSeed: -759235891
+  scalingMode: 0
+  randomSeed: 1672378031
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -136,8 +136,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 2
+      scalar: 5
+      minScalar: 4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -471,7 +471,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 10
+    type: 0
     angle: 3.802223
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -493,7 +493,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.01
+      value: 3.4191227
       mode: 0
       spread: 0
       speed:
@@ -3201,13 +3201,13 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
---- !u!199 &199936132998602302
+--- !u!199 &199751039233776448
 ParticleSystemRenderer:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1181599476350372}
+  m_GameObject: {fileID: 1965505381548798}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
@@ -3234,7 +3234,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 4
   m_SortMode: 1
   m_MinParticleSize: 0
