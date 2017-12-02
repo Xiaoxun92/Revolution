@@ -38,28 +38,40 @@ public class Player : MonoBehaviour
     [Header("火焰进阶大小")]
     public float[] fireMaxSize;
 
+    [Header("视野初始大小")]
+    public float visionInitSize;
+    [Header("视野变化速度")]
+    public float visionIncreaseSpeed;
+
     GameManager gameManager;
     Transform fireTransform;
     Transform lightTransform;
-    Transform visionTransform;
+    Vision visionScript;
 
     public bool burning;
-    public float fireSize;
+
     public float igniteRadius;
     int igniteCount;
     float lastIgniteTime;
+
+    public float fireSize;
     Vector2 currentSpeed;
+
+    // Debug
+    public bool lockSize = false;
 
     void Start()
     {
         gameManager = Camera.main.GetComponent<GameManager>();
         fireTransform = transform.GetChild(0);
         lightTransform = transform.GetChild(1);
-        visionTransform = transform.GetChild(2);
+        visionScript = GameObject.Find("Vision").GetComponent<Vision>();
 
         burning = false;
+
         igniteCount = 0;
         lastIgniteTime = 0;
+
         currentSpeed = new Vector2();
     }
 
@@ -69,23 +81,28 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
                 Ignite();
             }
-        } else {
-            if (fireSize <= fireMinSize) {
-                FireOut();
-                return;
-            }
-            if (fireSize >= fireMaxSize[gameManager.gameState])
-                gameManager.NextStage();
-            fireSize -= sizeDropSpeed * Time.deltaTime;
-            fireTransform.localScale = Vector3.one * fireSize;
-            igniteRadius = fireSize * 0.75f;
-            lightTransform.localScale = Vector3.Lerp(lightTransform.localScale, Vector3.one * igniteRadius * 2, 0.01f);
-            float visionRadius = fireSize * 2 - 1;
-            visionTransform.localScale = Vector3.Lerp(visionTransform.localScale, Vector3.one * visionRadius, 0.01f);
+            return;
         }
+
+        if (fireSize <= fireMinSize) {
+            FireOut();
+            return;
+        }
+
+        if (fireSize >= fireMaxSize[gameManager.gameState]) {
+            gameManager.NextStage();
+            return;
+        }
+
+        if (lockSize == false)
+            fireSize -= sizeDropSpeed * Time.deltaTime;
+        //fireTransform.localScale = Vector3.one * fireSize;
+        igniteRadius = fireSize * 0.75f;
+        lightTransform.localScale = Vector3.Lerp(lightTransform.localScale, Vector3.one * igniteRadius * 2, 0.01f);
+        visionScript.radius = (fireSize - fireInitSize) * visionIncreaseSpeed + visionInitSize;
     }
 
-    // Handle player controls
+    // Movement control
     void FixedUpdate()
     {
         if (burning == false)
@@ -148,19 +165,22 @@ public class Player : MonoBehaviour
     {
         if (Time.time - lastIgniteTime < igniteGapMin)
             return;
-        
-        if (Time.time - lastIgniteTime < igniteGapMax)
-            igniteCount++;
-        else
+
+        if (Time.time - lastIgniteTime > igniteGapMax)
             igniteCount = 1;
+        else
+            igniteCount++;
+
         lastIgniteTime = Time.time;
-        Instantiate(igniteFlashPrefab, transform);
+        Instantiate(igniteFlashPrefab);
+
+        // Start fire
         if (igniteCount == igniteCountNeeded) {
             burning = true;
             fireSize = fireInitSize;
             fireTransform.gameObject.SetActive(true);
             lightTransform.gameObject.SetActive(true);
-            visionTransform.gameObject.SetActive(true);
+            visionScript.radius = visionInitSize;
         }
     }
 
@@ -171,7 +191,7 @@ public class Player : MonoBehaviour
         lastIgniteTime = 0;
         fireTransform.gameObject.SetActive(false);
         lightTransform.gameObject.SetActive(false);
-        visionTransform.gameObject.SetActive(false);
+        visionScript.gameObject.SetActive(false);
 
         foreach (GameObject civ in GameObject.FindGameObjectsWithTag("Civilian")) {
             if (civ.GetComponent<Civilian>().burning)

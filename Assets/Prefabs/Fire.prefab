@@ -34,13 +34,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1826819021551102}
-  m_LocalRotation: {x: 0.8912846, y: -0.05091002, z: -0.011246442, w: -0.4504371}
+  m_LocalRotation: {x: 0.89289254, y: -0, z: -0, w: -0.45026988}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5822589, y: 1.5822582, z: 1.5822582}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 233.522, y: -2.4890137, z: 7.793991}
+  m_LocalEulerAnglesHint: {x: 233.522, y: 0, z: 0}
 --- !u!198 &198012845155251040
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -97,10 +97,10 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 2039015531
+  randomSeed: -862498300
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1538,7 +1538,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1579,7 +1579,7 @@ ParticleSystem:
     strengthY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1620,7 +1620,7 @@ ParticleSystem:
     strengthZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1658,8 +1658,8 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    separateAxes: 0
-    frequency: 0.5
+    separateAxes: 1
+    frequency: 4
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
@@ -1668,7 +1668,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2

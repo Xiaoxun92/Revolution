@@ -15,6 +15,6 @@ public class Darkness : MonoBehaviour {
         else
             alpha += Time.deltaTime / fadeTime;
         alpha = Mathf.Clamp01(alpha);
-        sr.color = new Color(0, 0, 0, alpha);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, alpha);
     }
 }

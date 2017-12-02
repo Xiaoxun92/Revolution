@@ -5,11 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public bool mouseControlMode;
+    public GameObject map;
     public float[] cameraSize;
     public int gameState;
     
 	void Start () {
-        gameState = 0;
+        NextStage();
     }
 	
 	void Update () {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour {
     public void NextStage()
     {
         gameState++;
+        map.GetComponent<Map>().OnGameStateChange(gameState);
         switch (gameState) {
             case 1:
                 break;
