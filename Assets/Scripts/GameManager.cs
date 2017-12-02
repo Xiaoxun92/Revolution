@@ -5,27 +5,22 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public bool mouseControlMode;
+    public float[] cameraSize;
     public int gameState;
-    float cameraSize;
     
 	void Start () {
         gameState = 0;
-        cameraSize = 5;
-        Debug.Log(cameraSize);
     }
 	
 	void Update () {
-        Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, cameraSize, 0.01f);
-        Debug.Log(Camera.main.orthographicSize);
+        Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, cameraSize[gameState], 0.04f);
 	}
 
     public void NextStage()
     {
         gameState++;
-        Debug.Log(gameState);
         switch (gameState) {
             case 1:
-                cameraSize = 15;
                 break;
             case 2:
                 break;

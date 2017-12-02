@@ -29,7 +29,7 @@ public class Civilian : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = Camera.main.GetComponent<GameManager>();
 
         sr = gameObject.GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").transform;

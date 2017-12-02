@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = Camera.main.GetComponent<GameManager>();
         fireTransform = transform.GetChild(0);
         lightTransform = transform.GetChild(1);
         visionTransform = transform.GetChild(2);

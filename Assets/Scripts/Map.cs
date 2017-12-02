@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BackgroundLoop : MonoBehaviour {
+public class Map : MonoBehaviour {
 
     public float tileWidth;
     public float tileHeight;

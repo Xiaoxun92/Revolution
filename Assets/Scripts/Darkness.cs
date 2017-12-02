@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BlackCover : MonoBehaviour {
+public class Darkness : MonoBehaviour {
 
     public GameObject player;
 
