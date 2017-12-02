@@ -201,6 +201,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 198858096524398406, guid: fb6f0afe8506aba499cb3c5e17a3d714,
+        type: 2}
+      propertyPath: InitialModule.size3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198858096524398406, guid: fb6f0afe8506aba499cb3c5e17a3d714,
+        type: 2}
+      propertyPath: randomSeed
+      value: 1791217880
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb6f0afe8506aba499cb3c5e17a3d714, type: 2}
   m_IsPrefabParent: 0
@@ -3491,6 +3501,16 @@ Prefab:
         type: 2}
       propertyPath: CollisionModule.plane0
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 198370359761576422, guid: 4bc07490e2526874cab3141e43603f1f,
+        type: 2}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198370359761576422, guid: 4bc07490e2526874cab3141e43603f1f,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1701581176
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bc07490e2526874cab3141e43603f1f, type: 2}
@@ -26605,7 +26625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!198 &1821014687
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -26617,7 +26637,7 @@ ParticleSystem:
   lengthInSec: 3
   simulationSpeed: 1
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
