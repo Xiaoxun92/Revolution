@@ -49,9 +49,12 @@ TagManager:
   - name: Civilian
     uniqueID: 3074210203
     locked: 0
-  - name: Vision
-    uniqueID: 737656429
-    locked: 0
   - name: Player
     uniqueID: 1414101323
+    locked: 0
+  - name: MapForeground
+    uniqueID: 2300383081
+    locked: 0
+  - name: Vision
+    uniqueID: 737656429
     locked: 0

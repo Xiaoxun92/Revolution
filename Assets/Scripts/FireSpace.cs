@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class FireSpace : MonoBehaviour {
 
-    public Transform player;
+    public Transform fire;
     public float speedScaleX;
     public float speedScaleY;
 
+    Vector2 startPosition;
+
+    void Start()
+    {
+        startPosition = fire.position;
+    }
+
     void Update () {
-        transform.position = new Vector2(player.position.x * speedScaleX, player.position.y * speedScaleY);
+        transform.position = new Vector2((fire.position.x - startPosition.x) * speedScaleX, (fire.position.y - startPosition.y) * speedScaleY);
 	}
 }
