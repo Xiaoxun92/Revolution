@@ -126,7 +126,7 @@ public class Civilian : MonoBehaviour
         if (moveSpeed < attractMaxSpeed)
             moveSpeed += attractAcceleration;
         transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed);
-        if (Vector2.Distance(transform.position, player.position) < 0.1 * playerScript.fireSize) {
+        if (Vector2.Distance(transform.position, player.position) < 0.05 * playerScript.fireSize) {
             playerScript.Grow();
             Destroy(gameObject);
         }

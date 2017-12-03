@@ -98,8 +98,8 @@ public class Player : MonoBehaviour
             fireSize -= sizeDropSpeed * Time.deltaTime;
         fireTransform.localScale = Vector3.one * fireSize;
         igniteRadius = fireSize * 0.75f;
-        lightTransform.localScale = Vector3.Lerp(lightTransform.localScale, Vector3.one * igniteRadius * 2, 0.1f);
-        visionScript.radius = Mathf.Lerp(visionScript.radius, (fireSize - fireInitSize) * visionIncreaseSpeed + visionInitSize, 0.1f);
+        lightTransform.localScale = Vector3.Lerp(lightTransform.localScale, Vector3.one * igniteRadius * 2, 0.05f);
+        visionScript.radius = Mathf.Lerp(visionScript.radius, (fireSize - fireInitSize) * visionIncreaseSpeed + visionInitSize, 0.05f);
     }
 
     // Movement control
