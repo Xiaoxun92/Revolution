@@ -17,10 +17,12 @@ public class Civilian : MonoBehaviour
     public float attractMaxSpeed;
     public float attractAcceleration;
 
-    SpriteRenderer sr;
+    ParticleSystem particle;
     Transform player;
     Player playerScript;
     Color colorDelta;
+    Color currentColor;
+    float sizeX, sizeY;
     public bool burning;
     float moveSpeed;
 
@@ -31,10 +33,13 @@ public class Civilian : MonoBehaviour
     {
         gameManager = Camera.main.GetComponent<GameManager>();
 
-        sr = gameObject.GetComponent<SpriteRenderer>();
+        particle = gameObject.GetComponent<ParticleSystem>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerScript = player.GetComponent<Player>();
         colorDelta = (colorHot - colorCold) / igniteTime;
+        currentColor = colorCold;
+        sizeX = 2.8f;
+        sizeY = 3f;
         burning = false;
         moveSpeed = 0;
 
@@ -61,8 +66,8 @@ public class Civilian : MonoBehaviour
             }
 
             timer--;
-            if (timer == 0) {
-                timer = (int)Random.Range(timeMin, timeMax) * 60;
+            if (timer <= 0) {
+                timer = (int)(Random.Range(timeMin, timeMax) * 60);
                 int d = Random.Range(0, 3);
                 switch (d) {
                     case 0:
@@ -81,22 +86,39 @@ public class Civilian : MonoBehaviour
             }
             transform.position += direction * speed;
 
+            var main = particle.main;
+            Color c = currentColor;
             if (playerScript.burning && Vector2.Distance(transform.position, player.position) < playerScript.igniteRadius) {
-                sr.color += colorDelta * Time.fixedDeltaTime * playerScript.fireSize;
-                if (sr.color.r >= colorHot.r) {
+                currentColor = c + colorDelta * Time.fixedDeltaTime * playerScript.fireSize;
+                main.startColor = currentColor;
+                if (currentColor.r >= colorHot.r) {
                     burning = true;
-                    sr.color = colorHot;
+                    main.startColor = colorHot;
                     transform.GetChild(0).gameObject.SetActive(true);
+                    transform.GetChild(1).gameObject.SetActive(true);
+                    transform.GetChild(2).gameObject.SetActive(true);
                 }
             } else {
-                sr.color -= colorDelta * Time.fixedDeltaTime;
-                if (sr.color.r < colorCold.r)
-                    sr.color = colorCold;
+                currentColor = c - colorDelta * Time.fixedDeltaTime;
+                main.startColor = currentColor;
+                if (currentColor.r < colorCold.r) {
+                    currentColor = colorCold;
+                    main.startColor = currentColor;
+                }
             }
             return;
         }
 
         // Burning
+        var m = particle.main;
+        if (sizeX > 0) {
+            sizeX -= 0.1f;
+            m.startSizeX = sizeX;
+        }
+        if (sizeY > 0) {
+            sizeY -= 0.1f;
+            m.startSizeY = sizeY;
+        }
         if (growTime > 0) {
             growTime -= Time.fixedDeltaTime;
             return;
