@@ -14,7 +14,6 @@ public class Civilian : MonoBehaviour
     public float attractMaxSpeed;
     public float attractAcceleration;
 
-    ParticleSystem particle;
     Transform player;
     Player playerScript;
     
@@ -29,8 +28,7 @@ public class Civilian : MonoBehaviour
     void Start()
     {
         gameManager = Camera.main.GetComponent<GameManager>();
-
-        particle = gameObject.GetComponent<ParticleSystem>();
+        
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerScript = player.GetComponent<Player>();
 

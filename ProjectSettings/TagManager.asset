@@ -58,6 +58,9 @@ TagManager:
   - name: MapForeground
     uniqueID: 2300383081
     locked: 0
+  - name: Cloud
+    uniqueID: 1807475803
+    locked: 0
   - name: Vision
     uniqueID: 737656429
     locked: 0

@@ -6,8 +6,9 @@ public class GameManager : MonoBehaviour
     public bool mouseControlMode;
     public float fadeOutTime;
     public float fadeInTime;
-    public Transform map;
     public float[] cameraSize;
+    public Transform player;
+    public Transform map;
     public Transform civManager;
 
     public int gameState;
@@ -48,6 +49,12 @@ public class GameManager : MonoBehaviour
                         foreach (Transform child in civManager)
                             Destroy(child.gameObject);
                         civManager.GetComponent<CivilianManager>().Init();
+                        civManager.GetComponent<CivilianManager>().Init();
+                        player.GetComponent<Player>().maxSpeed1 *= 2;
+                        player.GetComponent<Player>().acceleration1 *= 2;
+                        player.GetComponent<Player>().sizeGrowSpeed *= 2;
+                        player.GetComponent<Player>().sizeDropSpeed *= 2;
+                        GameObject.Find("EnemyManager").GetComponent<EnemyManager>().Init();
                         break;
                     case 2:
                         break;
