@@ -4,26 +4,23 @@ using UnityEngine;
 
 public class Civilian : MonoBehaviour
 {
-    [Header("完全冷却时的颜色")]
-    public Color colorCold;
-    [Header("点燃前的颜色")]
-    public Color colorHot;
     [Header("点燃需要的时间")]
     public float igniteTime;
 
     GameManager gameManager;
 
     public float growTime;
+    public float roamSpeed;
     public float attractMaxSpeed;
     public float attractAcceleration;
 
     ParticleSystem particle;
     Transform player;
     Player playerScript;
-    Color colorDelta;
-    Color currentColor;
-    float sizeX, sizeY;
+    
     public bool burning;
+    float ignitePercentage;
+    
     float moveSpeed;
 
     int timer;
@@ -36,11 +33,10 @@ public class Civilian : MonoBehaviour
         particle = gameObject.GetComponent<ParticleSystem>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerScript = player.GetComponent<Player>();
-        colorDelta = (colorHot - colorCold) / igniteTime;
-        currentColor = colorCold;
-        sizeX = 2.8f;
-        sizeY = 3f;
+
         burning = false;
+        ignitePercentage = 0;
+
         moveSpeed = 0;
 
         timer = 1;
@@ -49,6 +45,9 @@ public class Civilian : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (gameManager.stateChanging)
+            return;
+
         if (burning == false) {
 
             float timeMin = 0;
@@ -58,7 +57,7 @@ public class Civilian : MonoBehaviour
             if (gameManager.mouseControlMode) {
                 timeMin = 2;
                 timeMin = 4;
-                speed = 0.015f;
+                speed = roamSpeed;
             } else {
                 timeMin = 2;
                 timeMin = 4;
@@ -85,50 +84,49 @@ public class Civilian : MonoBehaviour
                 }
             }
             transform.position += direction * speed;
-
-            var main = particle.main;
-            Color c = currentColor;
+            
             if (playerScript.burning && Vector2.Distance(transform.position, player.position) < playerScript.igniteRadius) {
-                currentColor = c + colorDelta * Time.fixedDeltaTime * playerScript.fireSize;
-                main.startColor = currentColor;
-                if (currentColor.r >= colorHot.r) {
+                ignitePercentage += Time.deltaTime / igniteTime;
+                transform.GetChild(0).GetChild(0).GetComponent<CircleZoom>().enabled = false;
+                transform.GetChild(0).GetChild(2).GetComponent<CircleZoom>().enabled = false;
+                if (ignitePercentage >= 1) {
                     burning = true;
-                    main.startColor = colorHot;
-                    transform.GetChild(0).gameObject.SetActive(true);
                     transform.GetChild(1).gameObject.SetActive(true);
-                    transform.GetChild(2).gameObject.SetActive(true);
                 }
             } else {
-                currentColor = c - colorDelta * Time.fixedDeltaTime;
-                main.startColor = currentColor;
-                if (currentColor.r < colorCold.r) {
-                    currentColor = colorCold;
-                    main.startColor = currentColor;
-                }
+                if (ignitePercentage > 0)
+                    ignitePercentage -= Time.deltaTime / igniteTime;
+                transform.GetChild(0).GetChild(0).GetComponent<CircleZoom>().enabled = true;
+                transform.GetChild(0).GetChild(2).GetComponent<CircleZoom>().enabled = true;
             }
+            SetAlpha(transform.GetChild(0).GetChild(0), 1 - ignitePercentage);
+            SetAlpha(transform.GetChild(0).GetChild(1), ignitePercentage);
+            SetAlpha(transform.GetChild(0).GetChild(2), 1 - ignitePercentage);
             return;
         }
 
         // Burning
-        var m = particle.main;
-        if (sizeX > 0) {
-            sizeX -= 0.1f;
-            m.startSizeX = sizeX;
-        }
-        if (sizeY > 0) {
-            sizeY -= 0.1f;
-            m.startSizeY = sizeY;
-        }
         if (growTime > 0) {
             growTime -= Time.fixedDeltaTime;
             return;
         }
+        if (transform.GetChild(0).localScale.x > 0) {
+            transform.GetChild(0).localScale -= Vector3.one * 0.02f;
+        }
         if (moveSpeed < attractMaxSpeed)
             moveSpeed += attractAcceleration;
         transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed);
-        if (Vector2.Distance(transform.position, player.position) < 0.05 * playerScript.fireSize) {
+        if (Vector2.Distance(transform.position, player.position) < 0.1) {
             playerScript.Grow();
+            playerScript.lockSize = false;
             Destroy(gameObject);
         }
+    }
+
+    void SetAlpha(Transform child, float alpha)
+    {
+        Color c = child.GetComponent<SpriteRenderer>().color;
+        c.a = alpha;
+        child.GetComponent<SpriteRenderer>().color = c;
     }
 }

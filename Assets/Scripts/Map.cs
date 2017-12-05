@@ -3,6 +3,7 @@
 public class Map : MonoBehaviour
 {
     public Sprite[] sprites;
+    public Sprite foreground;
 
     float tileWidth;
     float tileHeight;
@@ -13,11 +14,17 @@ public class Map : MonoBehaviour
         tileHeight = sprites[newState].bounds.extents.y * transform.localScale.y;
         foreach (Transform child in transform) {
             child.GetComponent<SpriteRenderer>().sprite = sprites[newState];
+            if (newState == 0)
+                child.GetChild(0).GetComponent<SpriteRenderer>().sprite = foreground;
+            else
+                child.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
         }
         transform.GetChild(0).position = new Vector2(-tileWidth, tileHeight);
         transform.GetChild(1).position = new Vector2(tileWidth, tileHeight);
         transform.GetChild(2).position = new Vector2(-tileWidth, -tileHeight);
         transform.GetChild(3).position = new Vector2(tileWidth, -tileHeight);
+
+        transform.position = (Vector2)Camera.main.transform.position;
     }
 
     void Update()

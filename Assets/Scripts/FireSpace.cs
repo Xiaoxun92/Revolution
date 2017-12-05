@@ -10,7 +10,12 @@ public class FireSpace : MonoBehaviour {
 
     Vector2 startPosition;
 
+    void Start()
+    {
+        startPosition = transform.position;
+    }
+
     void Update () {
-        transform.position = new Vector2(fire.position.x * speedScaleX, fire.position.y * speedScaleY);
+        transform.position = new Vector2((fire.position.x - startPosition.x) * speedScaleX, (fire.position.y - startPosition.y) * speedScaleY) + startPosition;
 	}
 }

@@ -13,7 +13,7 @@ public class Darkness : MonoBehaviour {
 		if (player.GetComponent<Player>().burning)
             alpha -= Time.deltaTime / fadeTime;
         else
-            alpha += Time.deltaTime / fadeTime;
+            alpha = 1;
         alpha = Mathf.Clamp01(alpha);
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, alpha);
     }

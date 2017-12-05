@@ -4,10 +4,10 @@ public class CircleZoom : MonoBehaviour
 {
     public float time1;
     public float time2;
+    public float timer;
     public float radius;
     public float alpha;
-
-    float timer = 0;
+    
     float rSpeed;
     float aSpeed;
 
@@ -25,7 +25,7 @@ public class CircleZoom : MonoBehaviour
             }
         }
 
-        transform.localScale = transform.localScale + Vector3.one * rSpeed * Time.deltaTime;
+        transform.localScale = transform.localScale + (Vector3)(Vector2.one * rSpeed * Time.deltaTime);
 
         if (aSpeed != 0) {
             Color c = gameObject.GetComponent<SpriteRenderer>().color;

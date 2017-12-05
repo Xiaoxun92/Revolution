@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -77,6 +78,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.B))
+            Grow();
+
         if (burning == false) {
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
                 Ignite();
@@ -105,7 +109,7 @@ public class Player : MonoBehaviour
     // Movement control
     void FixedUpdate()
     {
-        if (burning == false)
+        if (burning == false || gameManager.stateChanging)
             return;
 
         // Update speed and position
@@ -186,12 +190,14 @@ public class Player : MonoBehaviour
 
     void FireOut()
     {
+        SceneManager.LoadScene(0);
+        return;
         burning = false;
         igniteCount = 0;
         lastIgniteTime = 0;
         fireTransform.gameObject.SetActive(false);
         lightTransform.gameObject.SetActive(false);
-        visionScript.gameObject.SetActive(false);
+        visionScript.radius = visionInitSize;
 
         foreach (GameObject civ in GameObject.FindGameObjectsWithTag("Civilian")) {
             if (civ.GetComponent<Civilian>().burning)

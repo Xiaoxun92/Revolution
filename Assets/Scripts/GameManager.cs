@@ -1,33 +1,99 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     public bool mouseControlMode;
-    public GameObject map;
+    public float fadeOutTime;
+    public float fadeInTime;
+    public Transform map;
     public float[] cameraSize;
+    public Transform civManager;
+
     public int gameState;
-    
-	void Start () {
-        NextStage();
+    public bool stateChanging;
+
+    Transform transition;
+
+    float timer;
+    float zoomSpeed;
+
+    void Start()
+    {
+        transition = transform.GetChild(0);
+
+        gameState = 0;
+        stateChanging = false;
+        map.GetComponent<Map>().OnGameStateChange(gameState);
     }
-	
-	void Update () {
-        Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, cameraSize[gameState], 0.04f);
-	}
+
+    void Update()
+    {
+        if (stateChanging == false)
+            return;
+
+        Camera.main.orthographicSize += zoomSpeed * Time.deltaTime;
+        transition.localScale = new Vector3(Camera.main.aspect, 1, 1) * Camera.main.orthographicSize * 2;
+
+        // Fade out
+        if (timer < 0) {
+            timer += Time.deltaTime;
+            SetAlpha(transition, Time.deltaTime / fadeOutTime);
+            SetAlpha(civManager, -Time.deltaTime / fadeOutTime);
+            SetAlpha(map, -Time.deltaTime / fadeOutTime);
+            if (timer >= 0) {
+                map.GetComponent<Map>().OnGameStateChange(gameState);
+                switch (gameState) {
+                    case 1:
+                        foreach (Transform child in civManager)
+                            Destroy(child.gameObject);
+                        civManager.GetComponent<CivilianManager>().Init();
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
+            }
+            return;
+        }
+
+        // Fade in
+        timer += Time.deltaTime;
+        SetAlpha(transition, -Time.deltaTime / fadeInTime);
+        SetAlpha(civManager, Time.deltaTime / fadeInTime);
+        SetAlpha(map, Time.deltaTime / fadeInTime);
+        if (timer >= fadeInTime) {
+            stateChanging = false;
+        }
+    }
 
     public void NextStage()
     {
         gameState++;
-        map.GetComponent<Map>().OnGameStateChange(gameState);
+        stateChanging = true;
+        timer = -fadeOutTime;
+        zoomSpeed = (cameraSize[gameState] - Camera.main.orthographicSize) / (fadeOutTime + fadeInTime);
         switch (gameState) {
             case 1:
+                GameObject.Find("Vision").SetActive(false);
                 break;
             case 2:
                 break;
             case 3:
                 break;
         }
+    }
+
+    void SetAlpha(Transform t, float delta)
+    {
+        if (t.GetComponent<SpriteRenderer>() != null) {
+            Color c = t.GetComponent<SpriteRenderer>().color;
+            c.a += delta;
+            c.a = Mathf.Clamp01(c.a);
+            t.GetComponent<SpriteRenderer>().color = c;
+        }
+        foreach (Transform child in t)
+            SetAlpha(child, delta);
     }
 }
