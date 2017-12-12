@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Transform player;
     public Transform map;
     public Transform civManager;
+    public GameObject rainLarge;
 
     public int gameState;
     public bool stateChanging;
@@ -49,7 +50,6 @@ public class GameManager : MonoBehaviour
                         foreach (Transform child in civManager)
                             Destroy(child.gameObject);
                         civManager.GetComponent<CivilianManager>().Init();
-                        civManager.GetComponent<CivilianManager>().Init();
                         player.GetComponent<Player>().maxSpeed1 *= 2;
                         player.GetComponent<Player>().acceleration1 *= 2;
                         player.GetComponent<Player>().sizeGrowSpeed *= 2;
@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviour
                         GameObject.Find("EnemyManager").GetComponent<EnemyManager>().Init();
                         break;
                     case 2:
+                        foreach (Transform child in civManager)
+                            Destroy(child.gameObject);
+                        civManager.GetComponent<CivilianManager>().Init();
+                        foreach (Transform child in GameObject.Find("EnemyManager").transform)
+                            Destroy(child.gameObject);
+                        rainLarge.SetActive(true);
                         break;
                     case 3:
                         break;

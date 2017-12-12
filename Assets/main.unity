@@ -196,6 +196,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 649892594}
+  - {fileID: 154537581}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -216,11 +217,12 @@ MonoBehaviour:
   cameraSize:
   - 5
   - 10
-  - 0
+  - 20
   - 0
   player: {fileID: 1156041681}
   map: {fileID: 1023560080}
   civManager: {fileID: 446193776}
+  rainLarge: {fileID: 154537578}
   gameState: -1
   stateChanging: 0
 --- !u!1 &30535150
@@ -488,6 +490,16 @@ MonoBehaviour:
   timer: 0
   radius: 1
   alpha: 0.1
+--- !u!1 &154537578 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1410479464120262, guid: ce6304bf62ace4547bfcdc610c632e4b,
+    type: 2}
+  m_PrefabInternal: {fileID: 527072851}
+--- !u!4 &154537581 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b,
+    type: 2}
+  m_PrefabInternal: {fileID: 527072851}
 --- !u!1 &158421577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,12 +1043,80 @@ MonoBehaviour:
   tileLength:
   - 20
   - 40
-  - 0
+  - 80
   civilianPerTile: 10
   civScale:
   - 1
   - 2
-  - 0
+  - 4
+--- !u!1001 &527072851
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 16493135}
+    m_Modifications:
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 33.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.65722334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.002150563
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.74531686
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.11205231
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410479464120262, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199371420239633136, guid: ce6304bf62ace4547bfcdc610c632e4b,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 737656429
+      objectReference: {fileID: 0}
+    - target: {fileID: 199371420239633136, guid: ce6304bf62ace4547bfcdc610c632e4b,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4.276434
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483573839224, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 9.3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ce6304bf62ace4547bfcdc610c632e4b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &621430391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,7 +1424,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 52fcda6b01400bb499aa77a6a7eafc8a, type: 3}
   - {fileID: 21300000, guid: b4fd5ee025a69d84cbf05183c83135ea, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 55a3ec3ab99bb8c49974f18f4b91ec5f, type: 3}
   - {fileID: 0}
   foreground: {fileID: 21300000, guid: d2642e614c115db49999063e2c777fca, type: 3}
 --- !u!4 &1023560080
@@ -1497,7 +1577,7 @@ MonoBehaviour:
   fireMaxSize:
   - 3
   - 10
-  - 0
+  - 100
   visionInitSize: 2.7
   visionIncreaseSpeed: 4
   burning: 0

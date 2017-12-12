@@ -19,10 +19,10 @@ public class Map : MonoBehaviour
             else
                 child.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
         }
-        transform.GetChild(0).position = new Vector2(-tileWidth, tileHeight);
-        transform.GetChild(1).position = new Vector2(tileWidth, tileHeight);
-        transform.GetChild(2).position = new Vector2(-tileWidth, -tileHeight);
-        transform.GetChild(3).position = new Vector2(tileWidth, -tileHeight);
+        transform.GetChild(0).localPosition = new Vector2(-tileWidth, tileHeight);
+        transform.GetChild(1).localPosition = new Vector2(tileWidth, tileHeight);
+        transform.GetChild(2).localPosition = new Vector2(-tileWidth, -tileHeight);
+        transform.GetChild(3).localPosition = new Vector2(tileWidth, -tileHeight);
 
         transform.position = (Vector2)Camera.main.transform.position;
     }

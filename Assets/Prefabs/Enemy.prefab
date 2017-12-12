@@ -331,7 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roamSpeed: 0.03
   attractSpeed: 0
-  detectRadius: 5
+  detectRadius: 8
 --- !u!198 &198181361003327036
 ParticleSystem:
   m_ObjectHideFlags: 1
